@@ -2,7 +2,7 @@
     <div class="navbar navbar-default">
         <div class="navbar-header">
             <h1>
-                <router-link :to="{ name: 'Main' }">
+                <router-link :to="{ name: 'MyMain' }">
                     {{ sitename }}
                 </router-link>
             </h1>

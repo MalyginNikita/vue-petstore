@@ -2,7 +2,7 @@
     <div>
         <MyHeader :cartItemCount="cartItemCount"></MyHeader>
         <main>
-            <div v-for="product in sortedProducts" :key="product.id">
+            <div v-for="product in products" :key="product.id">
                 <div class="row">
                     <div class="col-md-5 col-md-offset-0">
                         <figure>
@@ -10,11 +10,9 @@
                         </figure>
                     </div>
                     <div class="col-md-6 col-md-offset-0 description">
-                        <router-link
-                            tag="h1"
-                            :to="{ name: 'Id', params: { id: product.id } }"
-                            >{{ product.title }}</router-link
-                        >
+                        <h1>
+                            {{ product.title }}
+                        </h1>
                         <p v-html="product.description"></p>
                         <p class="price">
                             {{ product.price | formatPrice }}
@@ -80,13 +78,62 @@
 </template>
 <script>
 import MyHeader from './MyHeader.vue';
-import axios from 'axios';
+//import axios from 'axios';
 
 export default {
     name: 'MyMain',
     data() {
         return {
-            products: {},
+            products: [
+                {
+                    id: 1001,
+                    title: 'Cat Food, 25lb bag',
+                    description:
+                        'A 25 pound bag of <em>irresistible</em>, organic goodness for your cat.',
+                    price: 2000,
+                    image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.heb.com%2Fproduct-detail%2Fmeow-mix-original-choice-cat-food%2F33651&psig=AOvVaw1F_JTNVdipI6feyKoDpNmN&ust=1669184084567000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIiS9LWRwfsCFQAAAAAdAAAAABAE',
+                    availableInventory: 10,
+                    rating: 1,
+                },
+                {
+                    id: 1002,
+                    title: 'Yarn',
+                    description:
+                        'Yarn your cat can play with for a very <strong>long</strong> time!',
+                    price: 299,
+                    image: '../assets/images/yarn.jpg',
+                    availableInventory: 7,
+                    rating: 1,
+                },
+                {
+                    id: 1003,
+                    title: 'Kitty Litter',
+                    description: 'Premium kitty litter for your cat.',
+                    price: 1100,
+                    image: '../assets/images/cat-litter.jpg',
+                    availableInventory: 99,
+                    rating: 4,
+                },
+                {
+                    id: 1004,
+                    title: 'Cat House',
+                    description: 'A place for your cat to play!',
+                    price: 799,
+                    image: '../assets/images/cat-house.jpg',
+                    availableInventory: 11,
+                    rating: 5,
+                },
+                {
+                    id: 1005,
+                    title: 'Laser Pointer',
+                    description:
+                        'Drive your cat crazy with this <em>amazing</em> product.',
+                    price: 4999,
+                    image: '../assets/images/laser-pointer.jpg',
+                    availableInventory: 25,
+                    rating: 1,
+                },
+            ],
             cart: [],
         };
     },
@@ -151,12 +198,12 @@ export default {
             }
         },
     },
-    created: function () {
+    /* created: function () {
         axios.get('../static/products.json').then((response) => {
             this.products = response.data.products;
             console.log(this.products);
         });
-    },
+    }, */
 };
 </script>
 <style scoped></style>
